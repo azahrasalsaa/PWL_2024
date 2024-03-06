@@ -71,4 +71,15 @@ Route::get('/articles/{$id}', [controllerPage::class,'articles']);
 //     ]); 
 Route::resource('photos', PhotoController::class)->except([ 
     'create', 'store', 'update', 'destroy' 
-    ]); 
+]);
+
+// Route::get('/greeting', function () { 
+//     return view('hello', ['name' => 'Zara']); 
+// });
+
+Route::get('/greeting', function () { 
+    return view('blog.hello', ['name' => 'Zara']); 
+}); 
+
+Route::get('/greeting', [WelcomeController::class, 
+'greeting']); 
