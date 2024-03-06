@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\controllerPage;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +53,22 @@ Route::get('/user/{name?}', function ($name=null) {
 Route::get('/user/{name?}', function ($name='John') {
     return 'Nama saya '.$name;
 });
+
+// Route::get('/hello', [WelcomeController::class,'hello']);
+// Route::get('/home', [controllerPage::class,'home']);
+// Route::get('/about', [controllerPage::class,'about']);
+// Route::get('/articles', [controllerPage::class,'articles']); 
+
+Route::get('/home', [controllerPage::class,'home']);
+Route::get('/about', [controllerPage::class,'about']);
+Route::get('/articles/{$id}', [controllerPage::class,'articles']); 
+
+// use App\Http\Controllers\PhotoController; 
+// Route::resource('photos', PhotoController::class);
+
+// Route::resource('photos', PhotoController::class)->only([ 
+//     'index', 'show' 
+//     ]); 
+Route::resource('photos', PhotoController::class)->except([ 
+    'create', 'store', 'update', 'destroy' 
+    ]); 
